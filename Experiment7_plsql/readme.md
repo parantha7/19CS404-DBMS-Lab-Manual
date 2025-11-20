@@ -1,4 +1,5 @@
 # Experiment 7: PL/SQL – Variables, Control Structures and Loops
+# REG_NO : 212224040232
 
 ## AIM
 To write and execute simple PL/SQL programs using variables, loops, and conditional statements.
@@ -37,6 +38,23 @@ END;
 **Expected Output:**  
 Greater number is: 80
 
+## Program
+```sql
+DECLARE
+    num1 NUMBER := 80;  
+    num2 NUMBER := 50;  
+BEGIN
+    IF num1 > num2 THEN
+        DBMS_OUTPUT.PUT_LINE('Greater number is: ' || num1);
+    ELSE
+        DBMS_OUTPUT.PUT_LINE('Greater number is: ' || num2);
+    END IF;
+END;
+```
+## Output
+
+<img width="417" height="238" alt="image" src="https://github.com/user-attachments/assets/5d77db96-d84e-4e88-9bc8-ac1e601799fb" />
+
 ---
 
 ## 2. Write a PL/SQL program to Calculate Sum of First N Natural Numbers
@@ -49,6 +67,26 @@ Greater number is: 80
 
 **Expected Output:**  
 Sum of first 10 natural numbers is: 55
+
+
+```sql
+SET SERVEROUTPUT ON;
+
+DECLARE
+    n NUMBER := 10;       
+    i NUMBER := 1;        
+    total_sum NUMBER := 0;
+BEGIN
+    WHILE i <= n LOOP
+        total_sum := total_sum + i;
+        i := i + 1;
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('Sum of first ' || n || ' natural numbers is: ' || total_sum);
+END;
+```
+
+<img width="531" height="236" alt="image" src="https://github.com/user-attachments/assets/63363e8a-4d77-4dc7-89f3-de406bc3cf70" />
 
 ---
 
@@ -64,6 +102,32 @@ Sum of first 10 natural numbers is: 55
 n = 7  
 Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8
 
+
+```sql
+SET SERVEROUTPUT ON;
+
+DECLARE
+    n NUMBER := 7;     -- Number of terms in the series
+    a NUMBER := 0;     
+    b NUMBER := 1;   
+    c NUMBER;          
+    i NUMBER := 3;     -- Counter starting from 3 since first two terms are already known
+BEGIN
+    DBMS_OUTPUT.PUT_LINE('Fibonacci sequence:');
+    DBMS_OUTPUT.PUT_LINE(a);
+    DBMS_OUTPUT.PUT_LINE(b);
+
+    WHILE i <= n LOOP
+        c := a + b;
+        DBMS_OUTPUT.PUT_LINE(c);
+        a := b;
+        b := c;
+        i := i + 1;
+    END LOOP;
+END;
+```
+<img width="390" height="228" alt="image" src="https://github.com/user-attachments/assets/c723dcd4-0b57-4d51-b0d4-abf9f5224951" />
+
 ---
 
 ## 4. Write a PL/SQL Program to display the number in Reverse Order
@@ -76,6 +140,32 @@ Fibonacci sequence: 0, 1, 1, 2, 3, 5, 8
 **Expected Output:**  
 n = 1535  
 Reversed number is 5351
+
+
+## Program
+```sql
+SET SERVEROUTPUT ON;
+
+DECLARE
+    n NUMBER := 1535;      
+    original NUMBER := 1535;
+    reversed NUMBER := 0;   
+    digit NUMBER;           
+BEGIN
+    WHILE n > 0 LOOP
+        digit := MOD(n, 10);              -- Get the last digit
+        reversed := reversed * 10 + digit;-- Build the reversed number
+        n := TRUNC(n / 10);               -- Remove the last digit
+    END LOOP;
+
+    DBMS_OUTPUT.PUT_LINE('n = ' || original);
+    DBMS_OUTPUT.PUT_LINE('Reversed number is ' || reversed);
+END;
+---
+```
+## Output
+<img width="673" height="258" alt="image" src="https://github.com/user-attachments/assets/b7a82f82-5a79-42e4-8bf2-5e6c6c56be12" />
+
 
 ---
 
@@ -90,5 +180,33 @@ Reversed number is 5351
 a = 10, b = 9, c = 15  
 Largest of three number is 15
 
+## Program
+```sql
+SET SERVEROUTPUT ON;
+
+DECLARE
+    a NUMBER := 10;
+    b NUMBER := 9;
+    c NUMBER := 15;
+    largest NUMBER;
+BEGIN
+    IF a >= b AND a >= c THEN
+        largest := a;
+    ELSIF b >= a AND b >= c THEN
+        largest := b;
+    ELSE
+        largest := c;
+    END IF;
+
+    DBMS_OUTPUT.PUT_LINE('a = ' || a || ', b = ' || b || ', c = ' || c);
+    DBMS_OUTPUT.PUT_LINE('Largest of three number is ' || largest);
+END;
+```
+
+## Output
+<img width="351" height="254" alt="image" src="https://github.com/user-attachments/assets/60218ffb-844c-434d-945c-c3df2b02f169" />
+
 ## RESULT
 Thus, the PL/SQL programs using variables, conditionals, and loops were executed successfully.
+
+
